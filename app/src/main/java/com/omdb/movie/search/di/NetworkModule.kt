@@ -3,6 +3,9 @@ package com.omdb.movie.search.di
 import android.util.Log
 import com.google.android.material.tabs.TabLayout.TabGravity
 import com.google.gson.GsonBuilder
+import com.omdb.movie.search.network.ApiHelper
+import com.omdb.movie.search.network.ApiHelperImpl
+import com.omdb.movie.search.network.MoviesApi
 import com.omdb.movie.search.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -39,4 +42,11 @@ object NetworkModule {
             .client(okHttpClient)
             .build()
 
+    @Provides
+    @Singleton
+    fun provideMoviesApi(retrofit: Retrofit):MoviesApi = retrofit.create(MoviesApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideApiHelper(apiHelperImpl: ApiHelperImpl):ApiHelper = apiHelperImpl
 }
