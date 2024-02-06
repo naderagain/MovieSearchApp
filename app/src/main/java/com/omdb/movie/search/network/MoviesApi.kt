@@ -15,7 +15,7 @@ interface MoviesApi {
         @Query("page")
         pageNumber: Int = 1,
         @Query("apikey")
-        apiKey:String=API_KEY): Response<MoviesResponse>
+        apiKey:String=API_KEY): MoviesResponse
     @GET
     suspend fun fetchMovie(
         @Query("i")
