@@ -62,6 +62,8 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.8.2")
     implementation("androidx.fragment:fragment:1.6.2")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
 
 }
 kapt {
