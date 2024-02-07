@@ -26,10 +26,12 @@ class MoviesSearchAdapter @Inject constructor(
         val position = params.key ?: STARTING_PAGE_INDEX
         return try {
             val searchResponse = remoteDataSource.searchMovie(searchQuery, position)
+            if (!searchResponse.isSuccessful || searchResponse.body()==null)
+                throw Exception("Failed to search movie")
             LoadResult.Page(
-                data = searchResponse.Search,
+                data = searchResponse.body()!!.Search,
                 prevKey = if (position > 1) position - 1 else null,
-                nextKey = if (searchResponse.Response == "True") position + 1 else null
+                nextKey = if (searchResponse.body()!!.Response == "True") position + 1 else null
             )
         } catch (exception: IOException) {
             return LoadResult.Error(exception)
