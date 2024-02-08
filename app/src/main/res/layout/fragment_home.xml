@@ -1,24 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="activityViewModel"
             type="com.omdb.movie.search.ui.MainViewModel" />
+
         <variable
             name="viewModel"
             type="com.omdb.movie.search.ui.home.HomeViewModel" />
     </data>
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeFragment">
-
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/movies_poster" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.80"
+            android:background="@android:color/black" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="32dp">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/protest_riot_regular"
+                android:gravity="center"
+                android:paddingTop="54dp"
+                android:text="@string/movie_nsearch"
+                android:textSize="72sp"
+                android:textColor="?colorOnSurface"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/i_will_search_the_details_of_the_movie"
+                android:gravity="center"
+                android:textColor="?colorOnSurface"/>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxBackgroundColor="#99000000"
+                app:boxStrokeWidthFocused="1dp"
+                android:alpha="0.7"
+                app:expandedHintEnabled="false"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="@string/hint_enter_movie_name"
+                    android:textColorHint="?colorPrimaryContainer"
+                    android:textSize="22sp"
+                    android:textColor="?colorOnBackground"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:paddingHorizontal="56dp"
+                android:text="@string/search_movie" />
+
+        </LinearLayout>
     </FrameLayout>
+
 </layout>

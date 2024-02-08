@@ -2,4 +2,8 @@
     <string name="app_name">OMDB-Movie-Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_movie">Search Movie</string>
+    <string name="hint_enter_movie_name">Enter Movie Name</string>
+    <string name="i_will_search_the_details_of_the_movie">I will search the details of the movie</string>
+    <string name="movie_nsearch">Movie \nSearch</string>
 </resources>
