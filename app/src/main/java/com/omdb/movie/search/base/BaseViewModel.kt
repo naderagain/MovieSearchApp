@@ -8,4 +8,8 @@ import com.omdb.movie.search.extras.SingleLiveEvent
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
     val isLoading = ObservableBoolean(false)
     val onGoBackEvent = SingleLiveEvent<Void?>()
+    var hideKeyboardEvent = SingleLiveEvent<Void?>()
+    open fun hideKeyboard() {
+        hideKeyboardEvent.call()
+    }
 }

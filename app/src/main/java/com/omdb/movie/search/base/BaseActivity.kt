@@ -1,13 +1,14 @@
 package com.omdb.movie.search.base
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.omdb.movie.search.BR
+import com.omdb.movie.search.extras.hideKeyboard
 import kotlin.reflect.KClass
 
 abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel>(
@@ -22,5 +23,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel>(
         binding = DataBindingUtil.setContentView(this, layout)
         binding.lifecycleOwner = this
         binding.setVariable(BR.viewModel, viewModel)
+        viewModel.hideKeyboardEvent.observe(this){
+            hideKeyboard()
+        }
     }
 }

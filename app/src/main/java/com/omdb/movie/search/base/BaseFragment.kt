@@ -12,6 +12,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.omdb.movie.search.BR
+import com.omdb.movie.search.extras.hideKeyboard
 import kotlin.reflect.KClass
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel,AVM:BaseViewModel>(
@@ -23,6 +24,9 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel,AVM:BaseVie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this)[viewModelClass.java]
+        viewModel.hideKeyboardEvent.observe(this){
+            hideKeyboard()
+        }
     }
 
     override fun onCreateView(
