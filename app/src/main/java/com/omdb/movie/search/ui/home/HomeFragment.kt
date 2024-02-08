@@ -1,6 +1,7 @@
 package com.omdb.movie.search.ui.home
 
 
+import android.os.Bundle
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.omdb.movie.search.R
@@ -18,7 +19,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel, MainViewMo
     val activityViewModel: MainViewModel by activityViewModels()
     override fun activityViewModel(): MainViewModel = activityViewModel
 
-    private fun searchForMovie(movieName:String){
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.searchMovieNameEvent.observe(this) { movieName ->
+            searchForMovie(movieName)
+        }
+    }
+
+    private fun searchForMovie(movieName: String) {
         findNavController().navigate(actionSearchMovie(movieName))
     }
 }

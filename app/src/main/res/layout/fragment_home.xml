@@ -77,7 +77,8 @@
                     android:textSize="22sp"
                     android:textColor="?colorOnBackground"
                     android:paddingTop="8dp"
-                    android:paddingBottom="8dp"/>
+                    android:paddingBottom="8dp"
+                    app:textWatcher="@{viewModel.movieSearchTextWatcher}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -86,7 +87,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:paddingHorizontal="56dp"
-                android:text="@string/search_movie" />
+                android:text="@string/search_movie"
+                android:onClick="@{(view)->viewModel.onSearchMovie()}"/>
 
         </LinearLayout>
     </FrameLayout>
