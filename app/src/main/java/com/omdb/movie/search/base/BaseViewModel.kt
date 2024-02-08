@@ -9,7 +9,11 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
     val isLoading = ObservableBoolean(false)
     val onGoBackEvent = SingleLiveEvent<Void?>()
     var hideKeyboardEvent = SingleLiveEvent<Void?>()
+    var toastMessage = SingleLiveEvent<String>()
     open fun hideKeyboard() {
         hideKeyboardEvent.call()
+    }
+    open fun showToast(message:String){
+        toastMessage.value=message
     }
 }

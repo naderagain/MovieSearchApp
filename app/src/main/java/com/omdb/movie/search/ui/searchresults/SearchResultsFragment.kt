@@ -29,10 +29,8 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SearchResultsFragment : BaseFragment<FragmentSearchResultsBinding,SearchResultsViewModel,MainViewModel>(R.layout.fragment_search_results,SearchResultsViewModel::class) {
-    val activityViewModel : MainViewModel by activityViewModels()
+class SearchResultsFragment : BaseFragment<FragmentSearchResultsBinding,SearchResultsViewModel,MainViewModel>(R.layout.fragment_search_results,SearchResultsViewModel::class,MainViewModel::class) {
     val moviesSearchAdapter = MoviesSearchAdapter()
-    override fun activityViewModel(): MainViewModel = activityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

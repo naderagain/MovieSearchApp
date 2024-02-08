@@ -1,6 +1,7 @@
 package com.omdb.movie.search.base
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -25,6 +26,9 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel>(
         binding.setVariable(BR.viewModel, viewModel)
         viewModel.hideKeyboardEvent.observe(this){
             hideKeyboard()
+        }
+        viewModel.toastMessage.observe(this){message->
+            Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
         }
     }
 }
