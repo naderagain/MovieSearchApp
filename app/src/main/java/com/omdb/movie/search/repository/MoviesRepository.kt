@@ -4,8 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.omdb.movie.search.models.Movie
-import com.omdb.movie.search.models.MoviesResponse
-import com.omdb.movie.search.models.MoviesSearchAdapter
+import com.omdb.movie.search.models.MoviesSearchDataSource
 import com.omdb.movie.search.network.ApiHelper
 import com.omdb.movie.search.state.DataState
 import kotlinx.coroutines.flow.Flow
@@ -33,7 +32,7 @@ class MoviesRepository @Inject constructor(private val remoteDataSource: ApiHelp
     ): Flow<PagingData<Movie>> {
         return Pager(
             config = PagingConfig(pageSize = 10, maxSize = 30, enablePlaceholders = false),
-            pagingSourceFactory = { MoviesSearchAdapter(remoteDataSource, searchQuery) }
+            pagingSourceFactory = { MoviesSearchDataSource(remoteDataSource, searchQuery) }
         ).flow
     }
 }

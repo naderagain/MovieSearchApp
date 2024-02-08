@@ -8,7 +8,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MoviesApi {
-    @GET
+   @GET("/")
    suspend fun searchMovie(
         @Query("s")
         searchQuery:String,
@@ -16,7 +16,7 @@ interface MoviesApi {
         pageNumber: Int = 1,
         @Query("apikey")
         apiKey:String=API_KEY): Response<MoviesResponse>
-    @GET
+    @GET("/")
     suspend fun fetchMovie(
         @Query("i")
         imdbID: String,

@@ -15,5 +15,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding,MovieDetailsViewModel,MainViewModel>(R.layout.fragment_movie_details,MovieDetailsViewModel::class) {
     val activityViewModel : MainViewModel by activityViewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
     override fun activityViewModel(): MainViewModel = activityViewModel
 }

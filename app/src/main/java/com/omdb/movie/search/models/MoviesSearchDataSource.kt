@@ -3,14 +3,13 @@ package com.omdb.movie.search.models
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.omdb.movie.search.network.ApiHelper
-import com.omdb.movie.search.utils.Constants
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
 const val STARTING_PAGE_INDEX = 1
 
-class MoviesSearchAdapter @Inject constructor(
+class MoviesSearchDataSource @Inject constructor(
     val remoteDataSource: ApiHelper,
     val searchQuery: String
 ) :
@@ -34,8 +33,10 @@ class MoviesSearchAdapter @Inject constructor(
                 nextKey = if (searchResponse.body()!!.Response == "True") position + 1 else null
             )
         } catch (exception: IOException) {
+            exception.printStackTrace()
             return LoadResult.Error(exception)
         } catch (exception: HttpException) {
+            exception.printStackTrace()
             return LoadResult.Error(exception)
         }
     }
