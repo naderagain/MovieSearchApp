@@ -23,8 +23,7 @@
             android:background="?colorOnSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/imgArrow"
@@ -48,13 +47,14 @@
             app:layout_constraintTop_toTopOf="@+id/imgMoviePoster">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewMovieName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textColor="?colorOnBackground"
                 android:text="@{movie.title}"
-                tools:text="Tita Cervera. La baronesa" />
+                tools:text="Tita Cervera. La baronesa"
+                android:transitionName='@{movie.imdbID + "title"}'/>
 
             <TextView
                 android:id="@+id/txtType"

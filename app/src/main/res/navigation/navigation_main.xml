@@ -30,8 +30,9 @@
         android:name="com.omdb.movie.search.ui.moviedetails.MovieDetailsFragment"
         android:label="MovieDetailsFragment"
         tools:layout="@layout/fragment_movie_details">
+
         <argument
-            android:name="imdbID"
-            app:argType="string" />
+            android:name="movie"
+            app:argType="com.omdb.movie.search.models.Movie" />
     </fragment>
 </navigation>

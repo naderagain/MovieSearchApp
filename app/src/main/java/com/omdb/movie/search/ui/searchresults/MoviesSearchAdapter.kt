@@ -3,6 +3,9 @@ package com.omdb.movie.search.ui.searchresults
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -11,12 +14,13 @@ import com.omdb.movie.search.models.Movie
 
 class MoviesSearchAdapter:PagingDataAdapter<Movie, MoviesSearchAdapter.MovieSearchViewHolder>(MoviesSearchDiffCallback) {
 
-    var movieSearchItemClick : ((position:Int,movie:Movie)->Unit)?=null
+    var movieSearchItemClick : ((position:Int, movie:Movie, movieName: TextView, imageView:ImageView)->Unit)?=null
     override fun onBindViewHolder(holder: MovieSearchViewHolder, position: Int) {
         getItem(position)?.let {movie->
             holder.binding.movie=movie
             holder.binding.layoutMovieSearchItem.setOnClickListener {
-                movieSearchItemClick?.invoke(position,movie)
+                ViewCompat.setTransitionName(holder.binding.imgMoviePoster,movie.imdbID!!)
+                movieSearchItemClick?.invoke(position,movie,holder.binding.textViewMovieName,holder.binding.imgMoviePoster)
             }
         }
 

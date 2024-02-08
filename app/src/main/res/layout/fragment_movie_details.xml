@@ -31,7 +31,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:loadImage='@{viewModel.movie!=null?viewModel.movie.poster:""}'
-            tools:src="@drawable/movies_poster" />
+            android:transitionName="@{viewModel.imdbID}"
+            tools:src="@drawable/movies_poster"/>
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarDetails"
@@ -72,7 +73,8 @@
                 android:textColor="@android:color/white"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                tools:text="Guardians of the Galaxy Vol. 2" />
+                tools:text="Guardians of the Galaxy Vol. 2"
+                android:transitionName='@{viewModel.imdbID + "title"}'/>
 
             <TextView
                 android:id="@+id/txtMovieGenre"

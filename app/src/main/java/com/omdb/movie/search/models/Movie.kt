@@ -1,6 +1,7 @@
 package com.omdb.movie.search.models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Movie (
     @SerializedName("Title"      ) var Title      : String?            = null,
@@ -28,4 +29,4 @@ data class Movie (
     @SerializedName("Production" ) var Production : String?            = null,
     @SerializedName("Website"    ) var Website    : String?            = null,
     @SerializedName("Response"   ) var Response   : String?            = null
-)
+):Serializable
