@@ -1,7 +1,11 @@
 package com.omdb.movie.search.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.omdb.movie.search.models.Movie
 import com.omdb.movie.search.models.MoviesResponse
+import com.omdb.movie.search.models.MoviesSearchAdapter
 import com.omdb.movie.search.network.ApiHelper
 import com.omdb.movie.search.state.DataState
 import kotlinx.coroutines.flow.Flow
@@ -24,19 +28,12 @@ class MoviesRepository @Inject constructor(private val remoteDataSource: ApiHelp
         }
     }
 
-    override suspend fun searchMovie(
-        searchQuery: String,
-        pageNumber: Int
-    ): Flow<DataState<MoviesResponse>> = flow {
-        emit(DataState.Loading())
-        try {
-            val response = remoteDataSource.searchMovie(searchQuery, pageNumber)
-            if (response.isSuccessful && response.body()!=null)
-                emit(DataState.Success(response.body()!!))
-            else throw Exception("Unable to search movie!")
-        } catch (e: Exception) {
-            e.printStackTrace()
-            emit(DataState.Error("Unable to search movie!"))
-        }
+    override fun searchMovie(
+        searchQuery: String
+    ): Flow<PagingData<Movie>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10, maxSize = 30, enablePlaceholders = false),
+            pagingSourceFactory = { MoviesSearchAdapter(remoteDataSource, searchQuery) }
+        ).flow
     }
 }
