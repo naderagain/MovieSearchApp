@@ -18,6 +18,15 @@ class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding,MovieDetai
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            viewModel.imdbID=MovieDetailsFragmentArgs.fromBundle(it).imdbID
+        }
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.toolbarDetails.setNavigationOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 }

@@ -10,4 +10,8 @@
     <string name="retry">Retry</string>
     <string name="you_re_all_caught_up">You\'re all caught up</string>
     <string name="oops_something_went_wrong">Oops! Something went wrong</string>
+    <string name="txt_unable_to_fetch_movie_details">Oops! We are not able to fetch Movie Details.</string>
+    <string name="plot">Plot</string>
+    <string name="ratings">Ratings</string>
+    <string name="imdb_ratings">Imdb Ratings</string>
 </resources>

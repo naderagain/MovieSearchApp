@@ -1,28 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="activityViewModel"
             type="com.omdb.movie.search.ui.MainViewModel" />
+
         <variable
             name="viewModel"
             type="com.omdb.movie.search.ui.moviedetails.MovieDetailsViewModel" />
 
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.moviedetails.MovieDetailsFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <ImageView
+            android:id="@+id/imgMoviePoster"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage='@{viewModel.movie!=null?viewModel.movie.poster:""}'
+            tools:src="@drawable/movies_poster" />
 
-    </FrameLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_toolbar_transparent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:navigationIconTint="?colorSecondary" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_gradient_transparent"
+            app:layout_constraintBottom_toBottomOf="@id/layoutTitle"
+            app:layout_constraintEnd_toEndOf="@id/layoutTitle"
+            app:layout_constraintStart_toStartOf="@id/layoutTitle"
+            app:layout_constraintTop_toTopOf="@id/layoutTitle" />
+
+        <LinearLayout
+            android:id="@+id/layoutTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_gradient_transparent"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/imgMoviePoster"
+            app:layout_constraintEnd_toEndOf="@id/imgMoviePoster"
+            app:layout_constraintStart_toStartOf="@id/imgMoviePoster">
+
+            <TextView
+                android:id="@+id/txtMovieName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text='@{viewModel.movie!=null?viewModel.movie.title:""}'
+                android:textColor="@android:color/white"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:text="Guardians of the Galaxy Vol. 2" />
+
+            <TextView
+                android:id="@+id/txtMovieGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text='@{viewModel.movie!=null?viewModel.movie.genre:""}'
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                tools:text="Action, Adventure, Comedy" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutPlot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutTitle">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text="@string/plot"
+                android:textColor="?colorOnBackground"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:letterSpacing="0.1"
+                android:text='@{viewModel.movie!=null?viewModel.movie.plot:""}'
+                android:textColor="?colorOnBackground"
+                android:textSize="16sp"
+                tools:text="The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father, the ambitious celestial being Ego." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRatings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutPlot">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.1"
+                android:text="@string/imdb_ratings"
+                android:textColor="?colorOnBackground"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numStars="10"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="80dp"
+                android:isIndicator="true"
+                android:progressTint="#ffff8800"
+                style = "?android:attr/ratingBarStyleIndicator"
+                app:imdbRating='@{viewModel.movie!=null?viewModel.movie.imdbRating:""}'/>
+        </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+            app:updateVisibility="@{viewModel.isLoading}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
